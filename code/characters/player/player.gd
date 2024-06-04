@@ -28,6 +28,8 @@ const FRICTION = 0.2
 
 static var can_move: bool = false
 var x_velocity: float = 0.0
+var is_pressing: bool = false
+var event: InputEventScreenTouch
 
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -60,7 +62,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	outline_sprite.frame = sprite.frame
 
-	jump_bar.visible = Input.is_action_pressed(key_jump)
+	jump_bar.visible = Input.is_action_pressed(key_jump) or is_pressing
+
+	if Input.is_action_pressed(key_jump) or is_pressing:
+		jump_bar.value += delta
 
 	if not is_on_floor():
 		velocity.y += _get_gravity() * delta
@@ -71,8 +76,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_state_machine.travel("Idle")
 
-		if Input.is_action_pressed(key_jump):
-			jump_bar.value += delta
 		if Input.is_action_just_released(key_jump):
 			_jump()
 	_apply_friction()
@@ -86,6 +89,7 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		if collider is RigidBody2D:
 			collider.apply_impulse(-collision.get_normal() * 5.0, collider.to_local(collision.get_position()))
+
 
 
 func _get_gravity() -> float:
@@ -108,6 +112,7 @@ func _jump() -> void:
 
 
 func do_jump(y, x) -> void:
+	prints("x:", x)
 	velocity.y = y
 	x_velocity = x
 	jump_bar.value = 0.0

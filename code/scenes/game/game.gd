@@ -24,3 +24,19 @@ func start_game() -> void:
 func game_over(winning_id: int) -> void:
 	$AnimationPlayer.play("game_over")
 	$CanvasLayer/Label.text = "Felicidades!\nGanaste, Jugador %s" % winning_id
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		var player: Player
+		prints(event, get_viewport().size)
+		if event.position.x < 240:
+			player = player_1
+		elif event.position.x > 240:
+			player = player_2
+		player.is_pressing = event.pressed
+		if event.is_released() and player.is_on_floor() and is_instance_valid(player.event) and event.index == player.event.index:
+			player._jump()
+			player.event = null
+			return
+		player.event = event

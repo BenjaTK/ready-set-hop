@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d3dhntxl41mx0"]
+
+[node name="DeathBox" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Area" type="CollisionShape2D" parent="."]
+debug_color = Color(0.7, 0.164788, 0.232879, 0.42)

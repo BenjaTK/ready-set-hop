@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7c14vdph782m"]
+
+[ext_resource type="Script" path="res://code/objects/rotating_platform.gd" id="1_vbuty"]
+[ext_resource type="Texture2D" uid="uid://dmmlql0brd2h1" path="res://assets/sprites/platform.png" id="2_m4uka"]
+[ext_resource type="Script" path="res://code/objects/rotating_platform_body.gd" id="2_ps4yd"]
+[ext_resource type="Texture2D" uid="uid://c12tyiif3u5xl" path="res://assets/sprites/chain.png" id="3_l0r5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njr71"]
+size = Vector2(84, 8)
+
+[node name="RotatingPlatform" type="Node2D"]
+script = ExtResource("1_vbuty")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 4.0
+angular_damp = -0.5
+script = ExtResource("2_ps4yd")
+rotation_range = 35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_njr71")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_m4uka")
+region_rect = Rect2(0, 0, 48, 8)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+angular_limit_enabled = true
+angular_limit_lower = -0.50091
+angular_limit_upper = 0.410152
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = -1
+position = Vector2(0, -27)
+texture = ExtResource("3_l0r5a")

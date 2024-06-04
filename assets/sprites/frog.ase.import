@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://clu6n0q2f7iuu"
+path="res://.godot/imported/frog.ase-cc6112af99b7285769caa529654e5030.res"
+
+[deps]
+
+source_file="res://assets/sprites/frog.ase"
+dest_files=["res://.godot/imported/frog.ase-cc6112af99b7285769caa529654e5030.res"]
+
+[params]
+

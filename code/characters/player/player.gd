@@ -112,7 +112,6 @@ func _jump() -> void:
 
 
 func do_jump(y, x) -> void:
-	prints("x:", x)
 	velocity.y = y
 	x_velocity = x
 	jump_bar.value = 0.0

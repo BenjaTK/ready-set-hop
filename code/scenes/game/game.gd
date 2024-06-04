@@ -29,7 +29,6 @@ func game_over(winning_id: int) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		var player: Player
-		prints(event, get_viewport().size)
 		if event.position.x < 240:
 			player = player_1
 		elif event.position.x > 240:

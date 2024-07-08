@@ -1,22 +1,32 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2hbmyp5vimp0"]
+[gd_scene load_steps=21 format=3 uid="uid://d2hbmyp5vimp0"]
 
 [ext_resource type="Script" path="res://code/scenes/game/game.gd" id="1_w8epp"]
 [ext_resource type="PackedScene" uid="uid://qb67bb2drl8" path="res://code/scenes/level/level.tscn" id="2_40vn1"]
-[ext_resource type="FontFile" uid="uid://duj80c60cm3qo" path="res://assets/fonts/TooKool 10x.ttf" id="3_pnnvm"]
+[ext_resource type="Texture2D" uid="uid://drspf5l8vwfil" path="res://assets/sprites/game_over.png" id="4_7wlkg"]
+[ext_resource type="FontFile" uid="uid://cqs7y8nna3v8r" path="res://assets/fonts/ARCADEPI.TTF" id="4_f2g2x"]
+[ext_resource type="Texture2D" uid="uid://di38tmm0l5i4h" path="res://assets/sprites/back.png" id="4_sm57r"]
 [ext_resource type="AudioStream" uid="uid://b6kh2y686co6x" path="res://assets/sfx/whistle.wav" id="4_ulp5p"]
+[ext_resource type="Texture2D" uid="uid://8jcnuqkf81dk" path="res://assets/sprites/ready.png" id="5_3hb68"]
+[ext_resource type="Script" path="res://code/scenes/main_menu/start_button.gd" id="5_jjgcy"]
+[ext_resource type="Texture2D" uid="uid://bdum6sx4lqp8j" path="res://assets/sprites/set.png" id="6_dnckj"]
+[ext_resource type="Texture2D" uid="uid://i05nxyfwwyym" path="res://assets/sprites/hop.png" id="7_1flpk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_jbyw2"]
-color = Color(0.858824, 0.941176, 0.921569, 1)
+color = Color(0.968627, 0.878431, 0.698039, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y57jt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_03lie"]
-font = ExtResource("3_pnnvm")
-font_size = 20
+font = ExtResource("4_f2g2x")
+font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_tia38"]
-font = ExtResource("3_pnnvm")
-font_size = 40
-outline_size = 3
+font = ExtResource("4_f2g2x")
+font_size = 20
+outline_size = 2
 outline_color = Color(0.0588235, 0.0509804, 0.0588235, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l8nvh"]
 
 [sub_resource type="Animation" id="Animation_aisjk"]
 length = 0.001
@@ -47,55 +57,116 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Label:position")
+tracks/2/path = NodePath("CanvasLayer/StartLabel:text")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(150, 302)]
+"update": 1,
+"values": [""]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasLayer/StartLabel:text")
+tracks/3/path = NodePath("SFXWhistle:pitch_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
+"update": 0,
+"values": [1.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SFXWhistle:pitch_scale")
+tracks/4/path = NodePath("SFXWhistle:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SFXWhistle:volume_db")
+tracks/5/path = NodePath("CanvasLayer/TextureRect:texture")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/GameOver:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/GameOver:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Label:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.968627, 0.878431, 0.698039, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/BackButton:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_6f78d"]
 resource_name = "game_over"
 length = 2.0
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,19 +194,82 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Label:position")
-tracks/2/interp = 2
+tracks/2/path = NodePath("CanvasLayer/GameOver:scale")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.3986, 1.998),
+"times": PackedFloat32Array(0.95, 1.04),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/GameOver:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.92, 0.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.12, 1.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Label:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.15, 1.33),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(150, 302), Vector2(150, 113.5)]
+"values": [Color(0.968627, 0.878431, 0.698039, 0), Color(0.968627, 0.878431, 0.698039, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/BackButton:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_back_button"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_0i1pe"]
 resource_name = "start"
 length = 4.0
+step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,10 +277,10 @@ tracks/0/path = NodePath("CanvasLayer/StartLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.999, 1.03233, 1.998, 2.03133, 2.997, 3.03033, 3.7962),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.266667, 0.3, 1.2654, 1.26567, 1.299, 2.26467, 2.298, 3.33334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["", "3", "", "2", "", "1", "", "!!!", ""]
+"values": ["", "READY", "", "", "SET", "", "HOP!", ""]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -155,7 +289,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.7962),
+"times": PackedFloat32Array(3.36667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -169,12 +303,9 @@ tracks/2/path = NodePath("SFXWhistle")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0333, 1.03333, 2.03333, 3.03333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.299967, 1.3, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [0.0],
-"method": &"play"
-}, {
 "args": [0.0],
 "method": &"play"
 }, {
@@ -192,7 +323,7 @@ tracks/3/path = NodePath("SFXWhistle:pitch_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.93333),
+"times": PackedFloat32Array(0.266667, 2.16667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1.0, 1.1]
@@ -204,10 +335,22 @@ tracks/4/path = NodePath("SFXWhistle:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.93333),
+"times": PackedFloat32Array(0.266667, 2.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0.0, 5.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/TextureRect:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2664, 0.2997, 1.2654, 1.2987, 2.2644, 2.2977, 3.33),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("5_3hb68"), null, ExtResource("6_dnckj"), null, ExtResource("7_1flpk"), null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dv5eb"]
@@ -247,7 +390,7 @@ size = Vector2i(480, 135)
 render_target_update_mode = 4
 
 [node name="Player1Camera" type="Camera2D" parent="VBoxContainer/SubViewportContainer/Player1Viewport"]
-position = Vector2(0, 32)
+position = Vector2(0, 200)
 limit_left = 0
 limit_bottom = 240
 position_smoothing_enabled = true
@@ -270,7 +413,7 @@ size = Vector2i(480, 135)
 render_target_update_mode = 4
 
 [node name="Player2Camera" type="Camera2D" parent="VBoxContainer/SubViewportContainer2/Player2Viewport"]
-position = Vector2(0, 32)
+position = Vector2(0, 200)
 limit_left = 0
 limit_bottom = 240
 position_smoothing_enabled = true
@@ -284,9 +427,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
+offset_left = -796.0
 offset_top = -2.0
-offset_right = 240.0
+offset_right = 796.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -302,24 +445,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = 167.0
-offset_right = 90.0
-offset_bottom = 210.0
+offset_left = 259.0
+offset_top = 42.0
+offset_right = 321.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Felicidades!
-Ganaste Jugador [id]"
+pivot_offset = Vector2(31, 9)
+theme_override_colors/font_disabled_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_colors/font_hover_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_colors/font_pressed_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_colors/font_color = Color(0.968627, 0.878431, 0.698039, 1)
+theme_override_fonts/font = ExtResource("4_f2g2x")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_y57jt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y57jt")
+icon = ExtResource("4_sm57r")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_jjgcy")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.968627, 0.878431, 0.698039, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = 13.5
+offset_right = 124.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Congrats!
+You win, player 1"
 label_settings = SubResource("LabelSettings_03lie")
 horizontal_alignment = 1
 
 [node name="StartLabel" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -333,41 +518,62 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_tia38")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dv5eb")
-}
-
-[node name="SFXWhistle" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_rbghm")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0588235, 0.0509804, 0.0588235, 1)
-
-[node name="Button" type="Button" parent="ColorRect"]
-z_index = 1
-layout_mode = 1
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -12.5
-offset_right = 32.0
-offset_bottom = 12.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_pnnvm")
-theme_override_font_sizes/font_size = 10
-text = "Empezar"
 
-[connection signal="pressed" from="ColorRect/Button" to="ColorRect" method="hide"]
-[connection signal="pressed" from="ColorRect/Button" to="AnimationPlayer" method="play" binds= ["start"]]
+[node name="GameOver" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -69.0
+offset_right = 63.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(62, 37)
+texture = ExtResource("4_7wlkg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
+position = Vector2(168, 48)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+polygon = PackedVector2Array(25, 37, 37, 25, 48, 31, 47, 35, 51, 36, 57, 30, 61, 30, 70, 38, 74, 29, 93, 29, 92, 30, 118, 29, 119, 35, 113, 40, 119, 55, 114, 60, 119, 82, 35, 85, 28, 66, 33, 61, 24, 47)
+
+[node name="DeathBox" type="Area2D" parent="CanvasLayer"]
+position = Vector2(231, 286)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/DeathBox"]
+shape = SubResource("WorldBoundaryShape2D_l8nvh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dv5eb")
+}
+autoplay = "start"
+
+[node name="SFXWhistle" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_rbghm")
+
+[connection signal="button_down" from="CanvasLayer/BackButton" to="CanvasLayer/BackButton" method="_on_button_down"]
+[connection signal="focus_entered" from="CanvasLayer/BackButton" to="CanvasLayer/BackButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/BackButton" to="CanvasLayer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BackButton" to="CanvasLayer/BackButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_restart_button_pressed"]

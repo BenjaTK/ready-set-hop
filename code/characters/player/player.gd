@@ -111,7 +111,10 @@ func _jump() -> void:
 	keybind_sprite.hide()
 
 
+
 func do_jump(y, x) -> void:
+	if not can_move:
+		x = 0.0
 	velocity.y = y
 	x_velocity = x
 	jump_bar.value = 0.0
@@ -131,6 +134,3 @@ func _on_death_box_detector_area_entered(area: Area2D) -> void:
 func _on_death_box_detector_body_entered(body: Node2D) -> void:
 	die()
 	$SFXSplash.play()
-
-
-

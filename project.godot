@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Ready Set Hop!"
-run/main_scene="res://code/scenes/game/game.tscn"
+run/main_scene="res://code/scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
+
+[autoload]
+
+Transition="*res://code/interface/transition.tscn"
 
 [display]
 
@@ -22,6 +26,7 @@ window/size/viewport_height=270
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [editor_plugins]
 

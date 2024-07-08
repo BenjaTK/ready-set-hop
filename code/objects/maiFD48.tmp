@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvjxy18tre1u2"]
+
+[ext_resource type="Script" path="res://code/objects/main_menu_frog.gd" id="1_2md6a"]
+[ext_resource type="Texture2D" uid="uid://o05xy5cbgu7" path="res://assets/sprites/frog.png" id="1_3bxop"]
+[ext_resource type="Texture2D" uid="uid://eucb0auhlgsy" path="res://assets/sprites/frog_2.png" id="3_yusqr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s13he"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvc2e"]
+height = 20.0
+
+[node name="MainMenuFrog" type="RigidBody2D"]
+collision_layer = 32768
+collision_mask = 32769
+can_sleep = false
+script = ExtResource("1_2md6a")
+textures = Array[Texture]([ExtResource("1_3bxop"), ExtResource("3_yusqr")])
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3bxop")
+hframes = 3
+vframes = 2
+frame = 1
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://assets/sprites",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/sprites/frog.ase"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8e46e9ccb010491716817538fd3423f1"
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s13he")
+
+[node name="DeathBoxDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Area" type="CollisionShape2D" parent="DeathBoxDetector"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_cvc2e")
+
+[connection signal="area_entered" from="DeathBoxDetector" to="." method="delete" unbinds=1]
+[connection signal="body_entered" from="DeathBoxDetector" to="." method="delete" unbinds=1]

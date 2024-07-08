@@ -1,6 +1,8 @@
 extends Node
 
 
+const MAIN_MENU_FROG = preload("res://code/objects/main_menu_frog.tscn")
+
 @onready var player_1_viewport: SubViewport = $VBoxContainer/SubViewportContainer/Player1Viewport
 @onready var player_1_camera: Camera2D = $VBoxContainer/SubViewportContainer/Player1Viewport/Player1Camera
 @onready var player_2_viewport: SubViewport = $VBoxContainer/SubViewportContainer2/Player2Viewport
@@ -14,6 +16,8 @@ func _ready() -> void:
 	player_2_viewport.world_2d = player_1_viewport.world_2d
 	player_1.camera_transform.remote_path = player_1_camera.get_path()
 	player_2.camera_transform.remote_path = player_2_camera.get_path()
+	player_1_viewport.size.x = $HSeparator.get_viewport_rect().size.x
+	player_2_viewport.size.x = $HSeparator.get_viewport_rect().size.x
 
 
 func start_game() -> void:
@@ -21,9 +25,21 @@ func start_game() -> void:
 	Player.can_move = true
 
 
+func _process(delta: float) -> void:
+	player_1_viewport.size.x = $HSeparator.get_viewport_rect().size.x
+	player_2_viewport.size.x = $HSeparator.get_viewport_rect().size.x
+
+
 func game_over(winning_id: int) -> void:
 	$AnimationPlayer.play("game_over")
-	$CanvasLayer/Label.text = "Felicidades!\nGanaste, Jugador %s" % winning_id
+	$CanvasLayer/Label.text = "Congrats!\nYou win, player %s" % winning_id
+	await get_tree().create_timer(1.5).timeout
+	for i in 15:
+		var frog = MAIN_MENU_FROG.instantiate()
+		$CanvasLayer.add_child.call_deferred(frog)
+		frog.z_index = 2
+		frog.force_idx = winning_id - 1
+		await get_tree().create_timer(randf_range(0.9, 1.1)).timeout
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,3 +55,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			player.event = null
 			return
 		player.event = event
+
+
+func _on_restart_button_pressed() -> void:
+	Transition.transition_to_file("res://code/scenes/main_menu/main_menu.tscn")
+
+
+func show_back_button() -> void:
+	var tween = create_tween()
+	$CanvasLayer/BackButton.position.x = $CanvasLayer/BackButton.get_viewport_rect().size.x + 62
+	tween.tween_property($CanvasLayer/BackButton, "position:x", $CanvasLayer/BackButton.get_viewport_rect().size.x / 2.0 - 31, 0.1)

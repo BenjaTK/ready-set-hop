@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://duj80c60cm3qo"
-path="res://.godot/imported/TooKool 10x.ttf-1a1d5f15399553962570465d78fd0b10.fontdata"
+uid="uid://cqs7y8nna3v8r"
+path="res://.godot/imported/ARCADEPI.TTF-9611939fa1fb9676b9bec2b468ca0364.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/TooKool 10x.ttf"
-dest_files=["res://.godot/imported/TooKool 10x.ttf-1a1d5f15399553962570465d78fd0b10.fontdata"]
+source_file="res://assets/fonts/ARCADEPI.TTF"
+dest_files=["res://.godot/imported/ARCADEPI.TTF-9611939fa1fb9676b9bec2b468ca0364.fontdata"]
 
 [params]
 

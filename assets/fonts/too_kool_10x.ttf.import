@@ -1,0 +1,39 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://duj80c60cm3qo"
+path="res://.godot/imported/too_kool_10x.ttf-8ee54efe082688514f9073759bd0e332.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/too_kool_10x.ttf"
+dest_files=["res://.godot/imported/too_kool_10x.ttf-8ee54efe082688514f9073759bd0e332.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}
